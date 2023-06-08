@@ -5,17 +5,13 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('type', {
     id:{
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      defaultValue: DataTypes.UUIDV4
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    createdDb: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
     }
   },
   {
