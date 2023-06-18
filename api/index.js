@@ -19,12 +19,12 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const populateTypes = require('./src/middleware/middleware.js')
+const populateTypes = require('./src/middleware/populateTypes.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => { //cuando terminemos las modficaciones lo ponemos en false
+conn.sync({ force: true }).then(() => { //force: true borra todas las tablas y la vuelve a crear
+  populateTypes();
   server.listen(3001, () => {
-    populateTypes();
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });
