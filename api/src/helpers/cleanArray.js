@@ -1,7 +1,7 @@
 const cleanArray = (arr) => arr.map(elem=>{
     return{
         name: elem.name,
-        created: false
+        url: elem.url
     };
 });
 

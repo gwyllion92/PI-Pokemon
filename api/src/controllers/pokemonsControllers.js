@@ -1,6 +1,7 @@
 const { Pokemon } = require("../db");
 const axios = require("axios");
 const cleanArray = require("../helpers/cleanArray");
+const cleanArrayDb = require("../helpers/clearnArrayDb");
 const getTypesFromDB = require("../controllers/typesControllers");
 
 
@@ -26,19 +27,31 @@ const getPokemonById = async (id, source) => {
 
 const getAllPokemons = async () => {
     const databasePokemonsRaw = await Pokemon.findAll();
-    const databasePokemons = cleanArray(databasePokemonsRaw);
-
-    const apiPokemonsRaw = (await axios.get("https://pokeapi.co/api/v2/pokemon")).data.results;
+    const databasePokemons = await cleanArrayDb(databasePokemonsRaw);
+    
+    const apiPokemonsRaw = (await axios.get("https://pokeapi.co/api/v2/pokemon?limit=120")).data.results;
     const apiPokemons = cleanArray(apiPokemonsRaw);
+    
+    const detailedPokemons = await Promise.all(apiPokemons.map(async (pokemon) => {
+    const response = await axios.get(pokemon.url);
+    const detailedData = response.data;
 
-    return [...databasePokemons, ...apiPokemons];
+    return {
+        id: detailedData.id,
+        name: detailedData.name,
+        image: detailedData.sprites.front_default,
+        types: detailedData.types.map((typeData) => typeData.type.name)
+        };
+      }));
+
+    return [...databasePokemons, ...detailedPokemons];
 } 
 
 const searchPokemonByName = async (name) => {
     const capitalizedName = name.charAt(0).toUpperCase();
     const databasePokemons = await Pokemon.findAll({ where: { capitalizedName }});
 
-    const apiPokemonsRaw = (await axios.get("https://pokeapi.co/api/v2/pokemon")).data.results;
+    const apiPokemonsRaw = (await axios.get("https://pokeapi.co/api/v2/pokemon?limit=120")).data.results;
     const apiPokemons = cleanArray(apiPokemonsRaw);
 
     const filteredApi = apiPokemons.filter((pokemon) => pokemon.name === name);

@@ -31,15 +31,12 @@ module.exports = (sequelize) => {
     },
     speed:{
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     height:{
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     weight:{
       type: DataTypes.DECIMAL,
-      allowNull: false,
     },
     created:{
       type: DataTypes.BOOLEAN,
