@@ -3,6 +3,7 @@ const axios = require("axios");
 const cleanArray = require("../helpers/cleanArray");
 const cleanArrayDb = require("../helpers/clearnArrayDb");
 const getTypesFromDB = require("../controllers/typesControllers");
+const cleanDetails = require("../helpers/cleanDetails");
 
 
 const createPokemon = async (name, img, health, attack, defense, speed, height, weight, types) => {
@@ -22,7 +23,9 @@ const getPokemonById = async (id, source) => {
     (await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)).data :
     await Pokemon.findByPk(id);
 
-    return pokemon;
+    const cleanPokemon = cleanDetails(pokemon)
+
+    return cleanPokemon;
 }
 
 const getAllPokemons = async () => {
