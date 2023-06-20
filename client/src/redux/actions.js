@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_POKEMON = "GET_POKEMON";
-export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
+export const GET_TYPES = "GET_TYPES";
 
 export const getPokemons =  () => {
     return async function(dispatch){
@@ -23,3 +23,11 @@ export const getPokemon =  (id) => {
     }
 }
 
+export const getTypes =  () => {
+  return async function(dispatch){
+      const apiData = await axios.get("http://localhost:3001/types/");
+      const types = apiData.data;
+
+      dispatch({type: GET_TYPES, payload: types})
+  }
+}

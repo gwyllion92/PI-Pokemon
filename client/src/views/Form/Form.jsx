@@ -1,31 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getTypes } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import Select from "react-select";
+import axios from "axios";
 
 
 const Form = () => {
+    const dispatch = useDispatch(); //RECORDA PARA "EJECUTAR" LAS ACTIONS NECESITÁS DISPATCH Y USESELECTOR
+    const types = useSelector((state) => state.types);
+
+    useEffect(() => {
+        dispatch(getTypes());
+    }, [dispatch])
+      
+
     const [form, setForm] = useState({
-        name: "",
+        name: "", 
+        img:"",
         health: "",
         attack: "",
         defense: "",
         speed: "",
         height: "",
         weight: "",
-        image: "",
-        types: []
+        type: []
     });
 
     const [imageURL, setImageURL] = useState("");
 
     const [errors, setErrors ] = useState({
         name: "",
+        img:"",
         health: "",
         attack: "",
         defense: "",
         speed: "",
         height: "",
-        weight: "",
-        image: "",
-        types: []
+        weight: "", 
+        type: []
     })
 
     const changeHandler = (event) => {
@@ -35,7 +47,11 @@ const Form = () => {
 
         setForm({...form, [property]: value}) //ahora si vemos lo que escribimos en el cliente y en el estado
     };
-      
+
+    const typesHandler = (event) => {
+        const selectedTypes = event.map((option) => option.value);
+      setForm({ ...form, type: selectedTypes });
+    };
 
     const validate = (form) => {
         setErrors((prevErrors) => {
@@ -86,6 +102,19 @@ const Form = () => {
           return updatedErrors;
         });
       };
+
+    const typeOptions = types.map((type) => ({
+      label: type.name,
+      value: type.id,
+    }));
+
+    const submitHandler = (event) => {
+      console.log(form);
+
+      event.preventDefault();
+      axios.post("http://localhost:3001/pokemons/", form)
+      .then(res => alert(res))
+    }
       
 
     return(
@@ -135,16 +164,20 @@ const Form = () => {
                 <br />
                 <div>
                     <label>Image: </label>
-                    <input type="file" name="image" />
+                    <input type="file" name="img" />
                     {imageURL && <img src={imageURL} alt="Selected" />}
                     <></>
+                </div>
+                <br />
+                <div>
+                  <Select options = {typeOptions} onChange={typesHandler} isMulti />
                 </div>
                 <br />
                     
                 <span>If 'Speed', 'Height' or 'Weight' are left empty they will be assigned as unknown by default</span>
             </form>
             <br></br>
-            <button type="submit" >Submit</button>
+            <button type="submit" onClick={submitHandler} >Submit</button>
         </div>
     )
 }
