@@ -1,0 +1,23 @@
+.container{
+    text-align: center;
+}
+
+.textEffect{
+    color: yellow;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: blue;
+    font-size: 4rem;
+  }
+
+  .button{
+    text-align: center;
+    color: white;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    background-color: rgba(243, 24, 24, 0.623);
+    border-radius: 50%; 
+    font-size: 2.5rem;
+    margin-top: 11rem
+}
