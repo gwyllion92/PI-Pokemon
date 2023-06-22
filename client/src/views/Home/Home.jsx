@@ -10,10 +10,23 @@ const Home = () => {
     const allPokemons = useSelector((state) => state.pokemons);
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ pokemonsPerPage ] = useState(12);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredPokemons, setFilteredPokemons] = useState([]);
 
     useEffect(() => {
         dispatch(getPokemons());
     }, [])
+
+    useEffect(() => {
+        if (searchTerm !== "") {
+          const filtered = allPokemons.filter((pokemon) =>
+            pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+          );
+          setFilteredPokemons(filtered);
+        } else {
+          setFilteredPokemons(allPokemons);
+        }
+      }, [searchTerm, allPokemons]);
 
     
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -21,13 +34,13 @@ const Home = () => {
     return(
         <div>
             <div>                
-                <CardsContainer currentPage={currentPage} pokemonsPerPage={pokemonsPerPage} />
+                <CardsContainer currentPage={currentPage} pokemonsPerPage={pokemonsPerPage} pokemons={filteredPokemons} />
             </div>
 
             <div>
                 <Pagination 
                     pokemonsPerPage={pokemonsPerPage}
-                    totalPokemons={allPokemons.length}
+                    totalPokemons={filteredPokemons.length}
                     paginate={paginate}
                 />
             </div>

@@ -7,7 +7,6 @@ const NavBar = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        // Aquí puedes realizar acciones relacionadas con la búsqueda, como enviar una solicitud de búsqueda al servidor
         console.log("Búsqueda:", searchTerm);
         setSearchTerm("");
       };

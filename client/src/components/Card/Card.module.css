@@ -11,70 +11,91 @@
 
 .normal{
     background-color: #A8A77A;
+    border: 7px solid #9b9a6f;
   }
   .fighting{
     background-color: #C22E28;
+    border: 7px solid #bb1510;
   }
   .flying{
     background-color: #A98FF3;
+    border: 7px solid #967ddb;
   }
   .poison{
-    background-color: #A33EA1 ;
+    background-color: #A33EA1;
+    border: 7px solid #832e81;
   }
   .ground{
     background-color: #E2BF65;
+    border: 7px solid #b3923e;
   }
   .fire {
-    background-color: #EE8130; /* Naranja para tipo fuego */
+    background-color: #EE8130;
+    border: 7px solid #df6101;
   }
   .rock{
     background-color: #B6A136;
+    border: 7px solid #978427;
   }
   .bug{
-    background-color: #A6B91A ;
+    background-color: #A6B91A;
+    border: 7px solid #1e7a07;
   }
   .ghost{
     background-color: #735797;
+    border: 7px solid #55377c;
   }
   .steel{
     background-color: #B7B7CE;
+    border: 7px solid #8484a7;
   }
   .water {
-    background-color: #6390F0; /* Azul claro para tipo agua */
+    background-color: #6390F0;
+    border: 7px solid #3964c0;
   }
   .grass {
-    background-color: #7AC74C; /* Verde para tipo planta */
+    background-color: #7AC74C;
+    border: 7px solid #4a961e;
   }  
   .electric {
-    background-color: #F7D02C; /* Amarillo dorado para tipo eléctrico */
+    background-color: #f1f524;
+    border: 7px solid rgb(233, 193, 34);
   }
   .psychic{
     background-color: #F95587;
+    border: 7px solid #ce3663;
   }
   .bug{
-    background-color: #48ab3c ;
+    background-color: #48ab3c;
+    border: 7px solid #36922c;
   }
   .ice{
     background-color: #96D9D6;
+    border: 7px solid #5cc4be;
   }
   .dragon{
     background-color: #6F35FC;
+    border: 7px solid #5923e0;
   }
   .dark{
-    background-color: #705746;
+    background-color: #311b0c;
+    border: 7px solid #705746;
   }
   .fairy{
     background-color: #D685AD;
+    border: 7px solid #b34e80;
   }
   .unknown{
     background-color: #68A090;
+    border: 7px solid #447e6d;
   }
   .shadow{
-    background-color: #463A4D ;
+    background-color: #463A4D;
+    border: 7px solid #291e30;
   }
 
   .imagen{
-    justify-content: center;
+    justify-content: center;  
     align-items: center;
     display: block;
     margin: 0 auto;
