@@ -11,10 +11,10 @@ const Detail = () => {
 
   useEffect(() => {
     dispatch(getPokemon(id));
+    console.log(pokemon);
   }, [dispatch, id]);
 
   if (!pokemon || !pokemon.name) {
-    // Agrega una comprobación adicional para verificar pokemon.name
     return null;
   }
 
@@ -32,7 +32,7 @@ const Detail = () => {
   return (
     <div className={`${style.detailContainer} ${style[typeClass]}`}>
       <h1>{capitalizedName}</h1>
-      <img className={style.imagen} src={pokemon.image} alt={pokemon.name} />
+      <img  src={pokemon.image} alt={pokemon.name} />
       <p>HP: {pokemon.health}</p>
       <p>Attack: {pokemon.attack}</p>
       <p>Defense: {pokemon.defense}</p>

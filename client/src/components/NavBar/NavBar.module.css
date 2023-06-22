@@ -1,6 +1,43 @@
-.mainContainer{
+.mainContainer {
     display: flex;
-    justify-content: space-around;
-    border-radius: 15px;
-    border: 1px solid black;
-}
+    justify-content: space-between;
+    align-items: center;
+    background-color: yellow;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    color: black;
+    border-radius: 1.5rem;
+    border-radius: 1.5rem;
+    padding-top: -1rem; /* Ajusta el valor según sea necesario */
+    padding-bottom: -1rem;
+  }
+  
+  .mainContainer a {
+    text-decoration: none;
+    color: black;
+    margin-right: 1rem;
+  }
+  
+  .searchForm {
+    display: flex;
+    align-items: center;
+  }
+  
+  .searchForm input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    color: black;
+  }
+  
+
+  .navBar{
+    margin-left: 0.5rem;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #e24393;
+    color: white;
+    cursor: pointer;
+  }

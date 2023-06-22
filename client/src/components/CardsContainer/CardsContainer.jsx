@@ -18,8 +18,9 @@ const CardsContainer = ({ currentPage, pokemonsPerPage }) => {
   return (
     <div className={style.container}>
       {currentPokemons.map(pokemon => (
-        <Card className={style.card}
+        <Card 
           key={pokemon.id}
+          id={pokemon.id}
           name={capitalizeFirstLetter(pokemon.name)}
           image={pokemon.image}
           types={pokemon.types.map(type => capitalizeFirstLetter(type))}

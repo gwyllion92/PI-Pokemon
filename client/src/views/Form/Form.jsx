@@ -3,6 +3,7 @@ import { getTypes } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import axios from "axios";
+import style from "./Form.module.css"
 
 
 const Form = () => {
